@@ -1,0 +1,21 @@
+.wheel-container {
+  --neutral-color: white;
+}
+
+.App {
+  font-family: 'Calibri';
+  font-size: 16px;
+  background: var(--neutral-color);
+  user-select: none;
+  color: #363535;
+}
+.row {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+a {
+  color: initial;
+}
+a:hover {
+  text-decoration: none;
+}

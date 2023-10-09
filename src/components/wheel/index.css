@@ -1,0 +1,910 @@
+.modal-style {           
+  position: relative;
+  max-width: 828px;
+  min-height: 320px;
+  background-color: rgb(255, 255, 255);
+  margin: 0 41px auto;
+  border-radius: 4px;
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
+  overflow-y: hidden;
+  -webkit-transition: margin-top 0.5s ease-in-out;
+  -moz-transition: margin-top 0.5s ease-in-out;
+  -o-transition: margin-top 0.5s ease-in-out;
+  transition: margin-top 0.5s ease-in-out;
+}
+.Dashboard-image {
+  background-image: url('../../assets/dashboard_page.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 400px;
+}
+.couponBoard-image {
+  background-image: url('../../assets/couponBoard.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 400px;
+}
+.coin-history-image {
+  background-image: url('../../assets/coinHistory.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 600px;
+}
+.main-border {
+  background-image: url('../../assets/strip.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 52px;
+}
+.SecureID-image {
+  background-image: url('../../assets/SecureID.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 550px;
+}
+.SecureUpload-image{
+  background-image: url('../../assets/SecureUpload.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 550px;
+}
+.LeaderBoard-image {
+  background-image: url('../../assets/LeaderboardPage.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 528px;
+}
+.exit-button {
+  background-color: grey!important;
+}
+.leaderboard {
+  background-image: url('../../assets/leaderbaords_banner.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 82px;
+}
+.rewards-count{
+  margin-bottom: 19px;
+  font-size: 16px;
+  max-height: 30px;
+  margin-top: 4px;
+}
+.rewards-count .coins, .rewards-count .coupon, .rewards-count .dashboard {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 30px;
+  height: 34px;
+  display: table-cell;
+}
+.rewards-count .coins {
+  background-image: url('../../assets/coins.png');
+}
+.rewards-count .coupon {
+  background-image: url('../../assets/coupon.png');
+}
+.rewards-count .dashboard {
+  background-image: url('../../assets/dashboard.png');
+}
+.rewards-count .coins-wrap .coins-content, .rewards-count .coupon-wrap .coupon-content, .rewards-count .dashboard-wrap .dashboard-content {
+  margin-left: 30px;
+  display: table-cell;
+  padding-top: 2px;
+  color: #8d8282;
+}
+.rewards-count .coins-wrap {
+  float: left;
+  width: 37%;
+}
+.rewards-count .coupon-wrap {
+  float: left;
+  width: 34%;
+}
+.rewards-count .dashboard-wrap {
+  display: initial;
+  width: 42%;
+}
+.wheel-container .progress {
+  display: flex;
+  overflow: hidden;
+  border-radius: .25rem;
+  transform: rotate(90deg);
+  position: absolute;
+  right: -173px;
+  top: 50%;
+  font-size: 16px;
+  background-color: transparent;
+  height: 8px;
+  width: 104%;
+}
+progress {
+  background-color: #607D8B;
+  width: 100%;
+}
+.progressPercent {
+  position: absolute;
+  right: -38px;
+  top: 0%;
+  background: #29b229;
+  width: 13%;
+  font-size: 12px;
+  line-height: 18px;
+  padding-left: 4px;
+  border-radius: 6px;
+  color: white;
+}
+progress[value]::-webkit-progress-value {
+  background-image:
+	   -webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(255, 0, 0, 0.1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #29b229, #29b229);
+    border-radius: 2px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+.wheel-container {
+  --wheel-size: 233px;
+  --wheel-slice-spacing: 50px;
+  --wheel-border-size: 5px;
+  --wheel-color: brown;
+  --neutral-color: white;
+  --PI: 3.14159265358979;
+  --nb-item: 0;
+  --item-nb: 0;
+  --selected-item: 0;
+  --nb-turn: 5;
+  --spinning-duration: 4s;
+  --reset-duration: 0.25s;
+}
+.wheel-container {
+  display: block;
+  position: relative;
+  box-sizing: content-box;
+  width: calc(var(--wheel-size) + 2 * var(--wheel-border-size));
+  height: calc(var(--wheel-size) + 2 * var(--wheel-border-size));
+  padding: 3px;
+  margin: auto;
+  background-color: var(--neutral-color);
+  border: solid var(--wheel-color) 3px;
+  border-radius: 50%;
+  user-select: none;
+}
+.wheel-container::before,
+.wheel-container::after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 0;
+  width: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  border: solid transparent 20px;
+  border-left-width: 0;
+}
+
+.wheel-container::before {
+  right: 0px;
+  border-right-color: var(--wheel-color);
+}
+
+.wheel-container::after {
+  right: -5px;
+  border-right-color: var(--neutral-color);
+}
+.wheel {
+  display: block;
+  position: relative;
+  box-sizing: content-box;
+  margin: auto;
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+  overflow: hidden;
+  border-radius: 50%;
+  border: solid var(--wheel-color) var(--wheel-border-size);
+  transition: transform var(--reset-duration);
+  transform: rotate(0deg);
+  cursor: pointer;
+}
+
+.wheel.spinning {
+  transition: transform var(--spinning-duration);
+  transform: rotate(calc(var(--nb-turn) * 360deg + (-360deg * var(--selected-item) / var(--nb-item, 1))));
+}
+.spin {
+  position: absolute;
+  border: 1px solid black;
+  background-color: white;
+  text-align: center;
+  width: 24%;
+  height: 11%;
+  top: 45%;
+  left: 37%;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.wheel::after {
+  display: block;
+  position: absolute;
+  content: '';
+  background-color: var(--neutral-color);
+  padding-left: 10px;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+}
+.wheel-container .item {
+  overflow: hidden;
+  position: absolute;
+  left: 32%;
+  top: 57%;
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  width: 36%;
+  max-height: 41px;
+  line-height: 18px;
+}
+.wheel-item {
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  transform-origin: center left;
+  transform: translateY(-50%) rotate(calc(var(--item-nb) * (360deg / var(--nb-item, 1))));
+  color: var(--neutral-color);
+  padding: 0 25px 0 50px;
+}
+.spin-image {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 34px;
+  height: 34px;
+  position: absolute;
+  top: -17px;
+  right: 26px;
+}
+.spin-image-0 {
+  background-image: url('../../assets/breakfast_spin.png');
+}
+.spin-image-1 {
+  background-image: url('../../assets/cab_spin.png');
+}
+.spin-image-2 {
+  background-image: url('../../assets/travel_spin.png');
+}
+.spin-image-3 {
+  background-image: url('../../assets/grocery_spin.png');
+}
+.spin-image-4 {
+  background-image: url('../../assets/lunch_spin.png');
+}
+.spin-image-5 {
+  background-image: url('../../assets/bills_spin.png');
+}
+.spin-image-6 {
+  background-image: url('../../assets/movie_spin.png');
+}
+.spin-image-8 {
+  background-image: url('../../assets/yoga_spin.png');
+}
+.spin-image-7 {
+  background-image: url('../../assets/shopping_spin.png');
+}
+.wheel-item:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  box-sizing: border-box;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-left: 0px;
+  opacity: 0.25;
+  --slice-max-width: calc(var(--PI) * var(--wheel-size) + var(--wheel-size) / 2);
+  --slice-width: calc((var(--slice-max-width) / var(--nb-item)) - var(--wheel-slice-spacing));
+  border: solid transparent calc(var(--slice-width) / 1);
+  border-left: solid transparent 0;
+  border-right: solid var(--neutral-color) calc(var(--wheel-size) / 2);
+}
+.content-main {
+  text-align: center;
+}
+.banner {
+  background-color: #29b229;
+  border-radius: 50px;
+  min-width: 75%;
+  max-width: 87%;
+  padding: 3px;
+  color: white;
+  margin-top: 10px;
+  margin-left: 44px;
+  font-size: 14px;
+}
+.banner-description .heading {
+  font-size: 15px;
+  float: left;
+  margin-left: 7%;
+  text-align: center;
+  margin-right: 7%;
+  line-height: 19px;
+}
+.banner-description .content {
+  font-size: 13px;
+  float: left;
+}
+.banner-description .heading, .banner-description .content {
+  margin-top: 5px;
+}
+.terms{
+  color: red;
+  margin-left: 5px;
+}
+.features{
+  text-align: center;
+  margin-top: 14px;
+  width: 100%;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #dadada;
+}
+.features .add-money {
+  margin-left: 13px;
+}
+.features .head {
+  cursor: pointer;
+  width: 19%;
+  height: 68px;
+}
+.features .image {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 34px;
+  height: 34px;
+}
+.features .icon {
+  padding: 5px;
+  border: 1px solid #dadada;
+  width: 46px;
+  border-radius: 8px;
+  margin-left: 21%;
+}
+.add-money .image {
+  background-image: url('../../assets/addmoney.png');
+}
+.pay-bills .image {
+  background-image: url('../../assets/paybills.png');
+}
+.scan-pay .image {
+  background-image: url('../../assets/scannpay.png');
+}
+.transfer .image {
+  background-image: url('../../assets/transfer.png');
+}
+.share-earn .image {
+  background-image: url('../../assets/sharenearn.png');
+}
+.features .content {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: bold;
+}
+.bar {
+  padding: 6px;
+  background-color: #e8e8e5;
+}
+.benefits {
+  border-top: 1px solid #dadada;
+  width: 100%;
+  padding-top: 5px;
+}
+.benefits .wrap {
+  width: 100%;
+}
+.benefits .icon {
+  margin-top: 5px;
+  float: left;
+  padding: 5px;
+  border: 1px solid #dadada;
+  width: 44px;
+  border-radius: 100px;
+  margin-left: 10px;
+}
+.benefits .image {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 31px;
+  height: 31px;
+}
+.benefits .content .head {
+  font-size: 15px;
+  font-weight: bold;
+}
+.benefits .content .desc {
+  font-size: 12px;
+}
+.benefits .content {
+  margin-left: 63px;
+  padding: 5px;
+  border-bottom: 1px solid #dadada;
+  padding-bottom: 10px;
+}
+.benefits .shopping .content {
+  border-bottom: transparent;
+}
+.benefits .travel .image {
+  background-image: url('../../assets/carinsurance.png');
+}
+.benefits .travel-insurance .image {
+  background-image: url('../../assets/travelinsurance.png');
+}
+.benefits .mutual .image {
+  background-image: url('../../assets/mutualfund.png');
+}
+.benefits .group-health .image {
+  background-image: url('../../assets/grouphealth.png');
+}
+.benefits .personal-accident .image {
+  background-image: url('../../assets/personalaccident.png');
+}
+.benefits .calender {
+  background-image: url('../../assets/schedule.png');
+}
+.benefits .play {
+  background-image: url('../../assets/startbutton.png');
+}
+.benefits .QR {
+  background-image: url('../../assets/scannpay.png');
+}
+.benefits .mutualfund {
+  background-image: url('../../assets/mutualfundaction.png');
+}
+.benefits .calender {
+  position: absolute;
+  right: 41px;
+}
+.benefits span.movies {
+  cursor: pointer;
+  float: right;
+  font-size: 9px;
+  border: 1px solid #ff6c6c;
+  font-weight: normal;
+  padding: 3px;
+  color: red;
+}
+.benefits .sub-icon {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: 86%;
+  width: 30px;
+  height: 22px;
+  float: right;
+}
+.account-details {
+  margin-left: 4%;
+  padding-bottom: 6px;
+}
+.savings-head {
+  border-left: 2px solid #FFC107;
+  padding-left: 5px;
+  margin-top: 6px;
+}
+.account-details span.arrow {
+  float: right;
+  color: #626060;
+  margin-right: 10px;
+}
+.digiSavings {
+  margin-top: 10px;
+  color: #5e5a5a;
+}
+.upi-id {
+  font-size: 12px;
+  color: #858585;
+}
+.balace-head {
+  text-align: right;
+  color: #858585;
+  font-size: 14px;
+  line-height: 18px;
+  margin-right: 10px;
+}
+.balance-amount {
+  text-align: right;
+  font-weight: 600;
+  line-height: 18px;
+  margin-right: 10px;
+}
+.UPI-accounts {
+  margin-top: 5px;
+  border-top: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.congratulations, .secure-greet-icon {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 88px;
+}
+.congratulations, .congratulations.Food, .congratulations.Lunch, .congratulations.Cab {
+  background-image: url('../../assets/congratulations.png');
+}
+.congratulations.Local.Travelling{
+  background-image: url('../../assets/insurancepopupimage.png');
+}
+.wheel-container {
+  background-image: url('../../assets/sachin.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.congratulations ~ button {
+  margin-top: 10px;
+}
+.discount-desc {
+  font-size: 13px;
+  text-align: center;
+  color: grey;
+  margin: 0 5px;
+}
+.discount-title {
+  font-size: 17px;
+  text-align: center;
+  font-weight: bold;
+  line-height: 21px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.discount-icon {
+  background-image: url('../../assets/scannpay.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 50px;
+  height: 41px;
+  margin-left: 40%;
+}
+.discount-icon-text {
+  color: #b82f2e;
+  margin-left: 37%;
+}
+.apply-now {
+  margin-left: 35%;
+  background: transparent;
+  border: 1px solid red;
+  color: red;
+  border-radius: 5px;
+  width: 28%;
+  margin-top: 5px;
+}
+.apply-now a {
+  font-size: 15px;
+  color: red;
+}
+.apply-now a:hover {
+  text-decoration: none;
+}
+.level {
+  position: absolute;
+  right: -49px;
+  top: -21px;
+  line-height: 18px;
+  font-weight: bold;
+}
+.insurance, .secure {
+  margin-left: 25px;
+}
+.insurance label, .secure label {
+  margin-right: 15px;
+  position: relative;
+}
+.insurance .wrap, .secure .wrap {
+  margin-bottom: 20px;
+}
+.self span {
+  margin-right: 125px;
+}
+.family span {
+  margin-right: 107px;
+}
+.other-family span{
+  margin-right: 19px;
+}
+.self span {
+  margin-right: 125px;
+}
+.family span {
+  margin-right: 107px;
+}
+.insurance input[type="radio"],.secure input[type="radio"] {
+  margin-right: 9px;
+}
+.insurance-icon{
+  margin-top: 10%;
+  background-image: url('../../assets/accident_image.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 242px;
+  height: 300px;
+  margin-left: 6%;
+}
+.secure-icon {
+  margin-top: 10%;
+  background-image: url('../../assets/insurance_bike.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 277px;
+  height: 222px;
+  margin-left: 2%;
+}
+.secure-next-buttona a {
+  width: 44%;
+}
+.secure-next-buttona {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.secure .other-family span {
+  margin-right: 19px;
+}
+.secure .other-friends span {
+  margin-right: 91px;
+}
+.secure .family span {
+  margin-right: 85px;
+}
+.secure .self span {
+  margin-right: 80px;
+}
+.secure-next-buttona a {
+  float: left;
+  margin: 10px;
+}
+.secure-next-buttona .withdraw {
+  background-color: #ffb121a1 !important;
+  float: left;
+  width: 50%;
+  margin-right: 0!important;
+  border-radius: 0!important;
+}
+.secure-next-buttona .continue {
+  background-color: #ff0000a1 !important;
+  float: left;
+  width: 50%;
+  border-radius: 0!important; 
+}
+.secure-next-buttona .share-button{
+  margin-right: 10%;
+  background-color: #ffb121;
+}
+.secure-next-buttona .next-button{
+  border-radius: 3px;
+}
+.insurance-title {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.next-button {
+  width: 100%;
+  background-color: red;
+  color: white;
+  padding: 11px;
+  text-align: center;
+}
+.next-buttona a{
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.next-buttona a {
+  color: white;
+}
+.next-buttona a:hover {
+  text-decoration: none;
+}
+.insurance-border {
+  width: 100%;
+  height: 60px;
+  background-color: #ffb121;
+  padding: 11px;
+}
+.insurance-border a {
+  float: left;
+  margin-top: 9px;
+}
+
+.insurance-border button.arrow {
+  margin-top: 2%;
+  background-image: url('../../assets/backarrow.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 18px;
+  height: 24px;
+  background-color: transparent;
+  border: transparent;
+  outline: none;
+}
+.insurance-border button.arrow a {
+  color: #5f4c4c;
+}
+.insurance-border button.arrow a:hover {
+  text-decoration: none;
+}
+.insurance-border button.arrow a:active {
+  color: #827b7b;
+}
+.insurance .checkmark, .secure .checkmark {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #827b7b;
+  /* bottom: 0; */
+}
+
+.insurance .wrap:hover input ~ .checkmark, .secure .wrap:hover input ~ .checkmark {
+  background-color: #fff;
+}
+.insurance .wrap input:checked ~ .checkmark, .secure .wrap input:checked ~ .checkmark {
+  background-color: white;
+}
+.insurance .checkmark:after, .secure .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.insurance .wrap input:checked ~ .checkmark:after, .secure .wrap input:checked ~ .checkmark:after {
+  display: block;
+}
+.insurance .wrap .checkmark:after, .secure .wrap .checkmark:after {
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+	border-radius: 50%;
+	background: red;
+}
+input.share-input::placeholder{
+  color: lightgrey;
+}
+.share-icon1,.share-icon2 {
+  margin-top: 10%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 160px;
+  height: 133px;
+  margin-left: 2%;
+  float: left;
+}
+.share-icon1 {
+  background-image: url('../../assets/share1.png');
+}
+.share-icon2 {
+  background-image: url('../../assets/share2.png');
+  margin-top: 14%;
+  margin-left: 30px;
+}
+.share-title {
+  text-align: center;
+  width: 72%;
+  margin-left: 13%;
+  font-weight: bold;
+  color: #4c4b4b;
+  margin-top: 26px;
+  float: left;
+}
+.share-content {
+  font-weight: 500;
+  text-align: center;
+  width: 71%;
+  margin-left: 13%;
+  color: limegreen;
+  margin-top: 17px;
+  float: left;
+  line-height: 19px;
+}
+.share-content2{
+  text-align: center;
+  color: darkgrey;
+  margin-top: 17px;
+  float: left;
+  font-size: 15px;
+  width: 87%;
+  margin-left: 22px;
+  line-height: 19px;
+}
+.share-input {
+  margin-top: 60px;
+  width: 90%;
+  margin-left: 18px;
+  padding: 7px;
+  border: 1px solid darkgrey;
+  margin-bottom: 35px;
+}
+.insurance-border span.text {
+  margin-left: 10%;
+  font-weight: bold;
+  font-size: 15px;
+  color: #4c4b4b;
+  text-align: center;
+  float: left;
+  margin-top: 8px;
+}
+.CurrentInsurance-top {
+  margin-top: 0!important;
+  position: absolute!important;
+}
+.CurrentInsurance-icon {
+  background-image: url("../../assets/CurrentInsurance.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 45em;
+  overflow: auto;
+}
+.TransactionPage1-image {
+  background-image: url("../../assets/transactionpage.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 400px;
+  overflow: auto;
+}
+.TransactionPage2-image {
+  background-image: url("../../assets/transactionpage1.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 562px;
+  overflow: auto;
+}
+.ShareRef-image {
+  background-image: url("../../assets/pg6_Usecase1_b_shareearn.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 562px;
+  overflow: auto;
+}
+.whatsapp-image {
+  background-image: url("../../assets/pg6_Usecase1_c_shareearn.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 600px;
+  overflow: auto;
+}
+.signUp-image {
+  background-image: url("../../assets/pg6_Usecase1_d_shareearn.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 600px;
+  overflow: auto;
+}
